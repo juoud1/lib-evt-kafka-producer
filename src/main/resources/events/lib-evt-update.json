@@ -1,0 +1,13 @@
+{
+	"libEvtId": 3,
+	"libEvtType": "UPDATE",
+	"book": {
+		"bookId": 123,
+		"bookName": "DobtiAbby",
+		"bookAuthor": {
+			"authorId": 7,
+			"authorName": "Dobatia"
+		},
+		"pubDate": 2023
+	}
+}
