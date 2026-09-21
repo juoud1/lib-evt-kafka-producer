@@ -1,5 +1,6 @@
 package com.dobatii.synanto.lrnkafka.producer;
 
+import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -45,8 +46,13 @@ public class LibEvtProducer {
 		Integer evtKey = intId != null ? libEvent.libEvtId().intValue() : Integer.MIN_VALUE; 
 		var evtValue = objectMapper.writeValueAsString(libEvent);
 		
-		IO.println("Lib evt value byte serialized = "+ objectMapper.writeValueAsBytes(libEvent));
+		//Trace log
+		IO.println("Lib evt value byte serialized = "+ Arrays.toString(objectMapper.writeValueAsBytes(libEvent)) +"\n ");
+		IO.println("Lib evt value string serialized = "+ objectMapper.writeValueAsString(libEvent) +"\n ");
 		
+		//Comment fonctionne cette routine en arrière plan :
+		// 1- Blocking call : get metadata about the kafka cluster
+		// 2 - If successs : Send message happens and return a COmpletableFuture
 		var completableFutureResult = kafkaTemplate.send(topicName, evtKey, evtValue);
 		
 		return completableFutureResult.whenComplete((sendResult, throwable) -> {
@@ -65,6 +71,23 @@ public class LibEvtProducer {
 	}
 	
 	private void handleSuccessSendingEvt(Integer evtKey, String evtValue, SendResult<Integer, String> sendResult) {
-		IO.println("L'envoi de message au broker effectué avec succès, clé = " + evtKey + " ; valeur = " + evtValue + " et la partition est " + sendResult.getRecordMetadata().partition());
+		
+		IO.println("Explorer l'objet SendResult et sa méthode getRecordMetadata() :");
+		//IO.println();
+		IO.println("L'envoi de message au broker effectué avec succès, clé = " + evtKey + " ; valeur = " + evtValue + " et la partition est " + sendResult.getRecordMetadata().partition() + "\n \n");
+		
+		//Explorer l'objet SendResult
+		IO.println("Explorer l'objet SendResult et sa méthode getProducerRecord() :");
+		//IO.println();
+		IO.println("L'envoi de message au broker effectué avec succès, objet ProducerRecord = " + sendResult.getProducerRecord().toString());
+		IO.println();
+		
+		/*
+		IO.println("L'envoi de message au broker effectué avec succès, topic = " + sendResult.getProducerRecord().topic() + 
+				"\n Header du record = " + sendResult.getProducerRecord().partition().toString() +
+				"\n Header du record = " + sendResult.getProducerRecord().headers().toString() +
+				"\n Header du record = " + sendResult.getProducerRecord().value() +
+				"\n Header du record = " + sendResult.getProducerRecord().timestamp());
+		*/
 	}
 }
