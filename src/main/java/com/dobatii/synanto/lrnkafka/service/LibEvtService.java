@@ -40,7 +40,8 @@ public class LibEvtService {
 		//IO.println("Evt recu d'appel REST : " + libEvt);
 		
 		//Invoke the kafka producer
-		libEvtProducer.sendLibEvt(libEvt);
+		//libEvtProducer.sendLibEvt(libEvt);
+		libEvtProducer.sendLibEvt_withPrducerRecord(libEvt);
 	
 		
 		IO.println("Événement créé avec succès!");

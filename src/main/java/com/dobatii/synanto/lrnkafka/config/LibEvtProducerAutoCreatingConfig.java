@@ -12,8 +12,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LibEvtProducerAutoCreatingConfig {
 	
-	@Value("${spring.kafka.topic}")
+	@Value("${spring.kafka.topic.name}")
 	public String topicName;
+	
+	@Value("${spring.kafka.topic.nombre-partitions}")
+	public Integer nbrePartitions;
+	
+	@Value("${spring.kafka.topic.nombre-replicas}")
+	public Integer nbreReplicas;
 	
 	@Bean
 	public NewTopic libEvtsTopic() {
@@ -22,8 +28,8 @@ public class LibEvtProducerAutoCreatingConfig {
 		
 		return TopicBuilder
 				.name(topicName)
-				.partitions(3)
-				.replicas(1)
+				.partitions(nbrePartitions)
+				.replicas(nbreReplicas)
 				.build();
 	}
 }
