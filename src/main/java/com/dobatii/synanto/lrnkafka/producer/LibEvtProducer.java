@@ -4,10 +4,16 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ThreadLocalRandom;
 
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.header.Header;
+import org.apache.kafka.common.header.internals.RecordHeader;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -35,6 +41,12 @@ public class LibEvtProducer {
 	
 	@Value("${spring.kafka.topic.nombre-partitions}")
 	public Integer nbrePartitions;
+	
+	@Value("${spring.kafka.producer-record.header.key}")
+	public String recordHeaderKey;
+	
+	@Value("${spring.kafka.producer-record.header.value}")
+	public String recordHeaderValue;
 	
 	private final KafkaTemplate<Integer, String> kafkaTemplate;
 	
@@ -88,8 +100,8 @@ public CompletableFuture<SendResult<Integer, String>> sendLibEvt_withPrducerReco
 		IO.println("Lib evt value string serialized = "+ objectMapper.writeValueAsString(libEvent) +"\n ");
 		
 		// Getting producer record
-		var producerRecord = buildProducerRecord(evtKey, evtValue);
-		IO.println("ProducerRecord = " + producerRecord.toString());
+		var producerRecord = buildProducerRecord_withRandomPartitionAndRecordHeaders(evtKey, evtValue, recordHeaderKey, recordHeaderValue);
+		IO.println("ProducerRecord avec dummy liste de headers= " + producerRecord.toString());
 		
 		//Comment fonctionne cette routine en arrière plan :
 		// 1- Blocking call : get metadata about the kafka cluster
@@ -109,14 +121,52 @@ public CompletableFuture<SendResult<Integer, String>> sendLibEvt_withPrducerReco
 		});
 	}
 	
-	private ProducerRecord<Integer, String> buildProducerRecord (Integer key, String value) {
+	private ProducerRecord<Integer, String> buildProducerRecord_withRandomPartitionAndRecordHeaders (Integer key, String value) {
 		var timestamp = Timestamp.valueOf(LocalDateTime.now());
 		var currentTimeMillis = System.currentTimeMillis();
 		IO.println("Timestamp de l'évt = " + timestamp + " \n timestamp.getTime() = " + timestamp.getTime() + "\n sys.currenttime = " + currentTimeMillis);
 		
 		var electedPartition = getRandomPartitionUsingThreadLocalRandom(0, nbrePartitions);
+		IO.println("Partition élue pour le stockage de l'évt = " + electedPartition);
 		
 		return new ProducerRecord<>(topicName, electedPartition, timestamp.getTime(), key, value);
+	}
+	
+	private ProducerRecord<Integer, String> buildProducerRecord_withRandomPartitionAndRecordHeaders (Integer producerRecordKey, String producerRecordValue, String dummyHeaderKey, String dummyHeaderValue) {
+		
+		// Building dummy list of headers
+		var header = buildProducerRecordHeader(dummyHeaderKey, dummyHeaderValue);
+		var headers = buildProducerRecordHeaders(header);
+		IO.println("Dummy liste des headers = " + headers.toString());
+		
+		ProducerRecord<Integer, String> producerRecord = buildProducerRecord_withRandomPartitionAndRecordHeaders(producerRecordKey, producerRecordValue);
+		IO.println("ProducerRecord sans liste des headers = " + producerRecord.toString());
+		
+		ProducerRecord<Integer, String> producerRecordWithHeaders = new ProducerRecord<>(producerRecord.topic(), producerRecord.partition(), producerRecord.timestamp(), producerRecord.key(), producerRecord.value(), headers);
+		IO.println("ProducerRecord avec dummy liste des headers = " + producerRecordWithHeaders.toString());
+		
+		return producerRecordWithHeaders;
+	}
+	
+	private Header buildProducerRecordHeader (String headerKey, String headerValue) {
+		IO.println("Création de dummy header encours..., \n clé=" + recordHeaderKey + "\n valeur=" + recordHeaderValue);
+		Header header = new RecordHeader(headerKey, headerValue.getBytes());
+		IO.println("Dummy header créé : " + header.toString());
+		IO.println("Création de dummy header avec succès.");
+		
+		return header;
+	}
+	
+	private List<Header> buildProducerRecordHeaders (Header header) {
+		IO.println("Création de la liste des dummies headers encours...");
+		
+		List<Header> headers = Collections.emptyList();
+		if (Objects.nonNull(header)) {
+			headers = List.of(header);
+		}
+		
+		IO.println("Création de la liste des dummies headers avec succès.");
+		return headers;
 	}
 	
 	private Integer getRandomPartitionUsingThreadLocalRandom (int numPartitionMin, int numPartitionMax) {
