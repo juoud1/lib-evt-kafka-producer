@@ -12,6 +12,11 @@ curl -v \
 	-H "Content-Type: application/json" \
 	-X POST http://172.30.224.1:8181/producer/v1/libevent
 	
+curl -v  \
+  -d '{"libEvtId": null, "libEvtType": "NEW", "book": {"bookId": 123, "bookName": "DobtiAbby", "bookAuthor": {"authorId": 73, "authorName": "Jou Dobatia"}, "pubDate": "2026-01-23"}}' \
+   -H "Content-Type: application/json" \
+   -X POST http://localhost:8181/producer/v1/libevent
+	
 
 PUT WITH ID = NON NULL 
 ----------------------

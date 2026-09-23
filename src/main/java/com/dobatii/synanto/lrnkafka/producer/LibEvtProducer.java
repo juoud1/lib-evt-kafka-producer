@@ -1,10 +1,8 @@
 package com.dobatii.synanto.lrnkafka.producer;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
