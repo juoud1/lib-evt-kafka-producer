@@ -1,0 +1,2 @@
+INDEX VERSION 1.134+/home/juoud1/appsOnWSL/lib-evt-producer/.metadata/.plugins/org.eclipse.jdt.core
+1865797976.index

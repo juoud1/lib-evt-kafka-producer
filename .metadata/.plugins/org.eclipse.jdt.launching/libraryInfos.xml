@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<libraryInfos>
+    <libraryInfo home="/opt/sts-5.4.0.RELEASE/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.linux.x86_64_25.0.4.v20260826-0822" version="25.0.4.1">
+        <bootpath>
+            <entry path="null"/>
+        </bootpath>
+        <extensionDirs>
+            <entry path="null"/>
+        </extensionDirs>
+        <endorsedDirs>
+            <entry path="null"/>
+        </endorsedDirs>
+    </libraryInfo>
+    <libraryInfo home="/opt/sts-5.4.0.RELEASE/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.linux.x86_64_25.0.4.v20260826-0822/jre" version="25.0.4.1"/>
+    <libraryInfo home="/home/juoud1/.sdkman/candidates/java/21.0.6-tem" version="21.0.6"/>
+    <libraryInfo home="/home/juoud1/.sdkman/candidates/java/11.0.21-tem" version="11.0.21"/>
+    <libraryInfo home="/home/juoud1/.sdkman/candidates/java/25.0.1-open" version="25.0.1"/>
+    <libraryInfo home="/home/juoud1/.sdkman/candidates/java/17.0.9-tem" version="17.0.9"/>
+    <libraryInfo home="/home/juoud1/.sdkman/candidates/java/8.0.392-tem" version="1.8.0_392">
+        <bootpath>
+            <entry path="/home/juoud1/.sdkman/candidates/java/8.0.392-tem/jre/lib/resources.jar"/>
+            <entry path="/home/juoud1/.sdkman/candidates/java/8.0.392-tem/jre/lib/rt.jar"/>
+            <entry path="/home/juoud1/.sdkman/candidates/java/8.0.392-tem/jre/lib/sunrsasign.jar"/>
+            <entry path="/home/juoud1/.sdkman/candidates/java/8.0.392-tem/jre/lib/jsse.jar"/>
+            <entry path="/home/juoud1/.sdkman/candidates/java/8.0.392-tem/jre/lib/jce.jar"/>
+            <entry path="/home/juoud1/.sdkman/candidates/java/8.0.392-tem/jre/lib/charsets.jar"/>
+            <entry path="/home/juoud1/.sdkman/candidates/java/8.0.392-tem/jre/lib/jfr.jar"/>
+            <entry path="/home/juoud1/.sdkman/candidates/java/8.0.392-tem/jre/classes"/>
+        </bootpath>
+        <extensionDirs>
+            <entry path="/home/juoud1/.sdkman/candidates/java/8.0.392-tem/jre/lib/ext"/>
+            <entry path="/usr/java/packages/lib/ext"/>
+        </extensionDirs>
+        <endorsedDirs>
+            <entry path="/home/juoud1/.sdkman/candidates/java/8.0.392-tem/jre/lib/endorsed"/>
+        </endorsedDirs>
+    </libraryInfo>
+</libraryInfos>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;lib-evt-consumer&apos;" deleteContents="false" description="Delete resource &apos;lib-evt-consumer&apos;" element1="/lib-evt-consumer" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1790240031557"/>
+</session>

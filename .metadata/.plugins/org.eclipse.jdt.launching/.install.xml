@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dirs>
+    <entry loc="/opt/sts-5.4.0.RELEASE/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.linux.x86_64_25.0.4.v20260826-0822" stamp="1788509359000"/>
+    <entry loc="/opt/sts-5.4.0.RELEASE/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.linux.x86_64_25.0.4.v20260826-0822/jre" stamp="1788509359000"/>
+    <entry loc="/home/juoud1/.sdkman/candidates/java/21.0.6-tem" stamp="1737502704000"/>
+    <entry loc="/home/juoud1/.sdkman/candidates/java/11.0.21-tem" stamp="1697579364000"/>
+    <entry loc="/home/juoud1/.sdkman/candidates/java/25.0.1-open" stamp="1763131973000"/>
+    <entry loc="/home/juoud1/.sdkman/candidates/java/17.0.9-tem" stamp="1697615627000"/>
+    <entry loc="/home/juoud1/.sdkman/candidates/java/8.0.392-tem" stamp="1697587828000"/>
+</dirs>

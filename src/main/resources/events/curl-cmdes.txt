@@ -2,18 +2,21 @@ POST WITH ID = NULL
 -------------------
 
 curl -v \
-	-d '{"libEvtId": null, "libEvtType": "NEW", "book": {"bookId": 123, "bookName": "DobtiAbby", "bookAuthor": {"authorId": 7, "authorName": "Dobatia"}, "pubDate": 2026}}' \
+	-d '{"libEvtId": null, "libEvtType": "NEW", "book": {"bookId": 123, "bookName": "DobtiAbby from curl, use spring producer app", "bookAuthor": {"authorId": 37, "authorName": "Dobatia"}, "pubDate": "2026-07-12"}}' \
 	-H "Content-Type: application/json" \
 	-X POST http://localhost:8181/producer/v1/libevent
 
 
+POST WITH ID = NON NULL 
+-----------------------
+
 curl -v \
-	-d '{"libEvtId": null, "libEvtType": "NEW", "book": {"bookId": 123, "bookName": "DobtiAbby", "bookAuthor": {"authorId": 7, "authorName": "Dobatia"}, "pubDate": 2026}}' \
+	-d '{"libEvtId": 123, "libEvtType": "NEW", "book": {"bookId": 232, "bookName": "DobtiAbby from curl, use spring producer app", "bookAuthor": {"authorId": 12, "authorName": "Dobatia"}, "pubDate": "2026-07-12"}}' \
 	-H "Content-Type: application/json" \
 	-X POST http://172.30.224.1:8181/producer/v1/libevent
 	
 curl -v  \
-  -d '{"libEvtId": null, "libEvtType": "NEW", "book": {"bookId": 123, "bookName": "DobtiAbby", "bookAuthor": {"authorId": 73, "authorName": "Jou Dobatia"}, "pubDate": "2026-01-23"}}' \
+  -d '{"libEvtId": 123, "libEvtType": "NEW", "book": {"bookId": 322, "bookName": "DobtiAbby from curl, use spring producer app", "bookAuthor": {"authorId": 37, "authorName": "Dobatia"}, "pubDate": "2026-07-12"}}' \
    -H "Content-Type: application/json" \
    -X POST http://localhost:8181/producer/v1/libevent
 	
@@ -22,12 +25,12 @@ PUT WITH ID = NON NULL
 ----------------------
 
 curl -v \
-	-d '{"libEvtId": 7, "libEvtType": "NEW", "book": {"bookId": 123, "bookName": "DobtiAbby ti Dongongo", "bookAuthor": {"authorId": 7, "authorName": "Dobatia"}, "pubDate": 2026}}' \
+	-d '{"libEvtId": 73, "libEvtType": "NEW", "book": {"bookId": 3, "bookName": "DobtiAbby from curl, use spring producer app", "bookAuthor": {"authorId": 73, "authorName": "Dobatia"}, "pubDate": "2026-03-21"}}' \
 	-H "Content-Type: application/json" \
 	-X PUT http://localhost:8181/producer/v1/libevent
 	
 curl -i \
-	-d '{"libEvtId": 1, "libEvtType": "NEW", "book": {"bookId": 123, "bookName": "DobtiAbby ti Dongongo", "bookAuthor": {"authorId": 7, "authorName": "Dobatia"}, "pubDate": 2026}}' \
+	-d '{"libEvtId": 73, "libEvtType": "NEW", "book": {"bookId": 3, "bookName": "DobtiAbby from curl, use spring producer app", "bookAuthor": {"authorId": 73, "authorName": "Dobatia"}, "pubDate": "2026-03-12"}}' \
 	-H "Content-Type: application/json" \
 	-X PUT http://localhost:8181/producer/v1/libevent
 	
