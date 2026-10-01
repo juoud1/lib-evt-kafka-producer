@@ -1,4 +1,4 @@
-package com.dobatii.synanto.lrnkafka.controller;
+package com.dobatii.synanto.lrnkafka.integration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,6 +18,7 @@ import org.springframework.kafka.test.context.EmbeddedKafka;
 import org.springframework.test.context.TestPropertySource;
 
 import com.dobatii.synanto.lrnkafka.domain.LibEvt;
+import com.dobatii.synanto.lrnkafka.domain.LibEvtType;
 import com.dobatii.synanto.lrnkafka.util.TestUtil;
 
 //@Disabled
@@ -31,32 +32,6 @@ class LibEvtControllerIntegrationTest {
 	@Autowired
 	private TestRestTemplate restTemplate;
 	
-	
-//	@BeforeAll
-//	static void setUpBeforeClass() throws Exception {
-//		
-//	}
-
-//	@AfterAll
-//	static void tearDownAfterClass() throws Exception {
-//	}
-
-//	@BeforeEach
-//	void setUp(WebApplicationContext context) throws Exception {
-////		restClient = RestTestClient.bindToApplicationContext(context);
-////		restClient =RestTestClient.bindToServer()
-////						.baseUrl("http://localhost:8181")
-////					//	.bindToController(new LibEvtController())
-////						.baseUrl("/producer")
-////						.build();
-	
-//	}
-//
-//	@AfterEach
-//	void tearDown() throws Exception {
-//	}
-	
-	//@Disabled
 	@Test
 	void testCreateLibEvt() {
 		
@@ -83,6 +58,7 @@ class LibEvtControllerIntegrationTest {
 				
 				
 		assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+		assertEquals(LibEvtType.NEW, responseEntity.getBody().libEvtType());
 //		assertEquals(HttpStatusCode, responseEntity.get);
 				
 		//fail("Not yet implemented");
